@@ -1,14 +1,24 @@
 package com.abcoding.connect.presentation.ui.theme
 
+import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color.Companion.DarkGray
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
 
 private val LightColors = lightColorScheme(
-    primary = md_theme_light_primary,
+    primary = md_theme_light_onPrimary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
     onPrimaryContainer = md_theme_light_onPrimaryContainer,
@@ -38,13 +48,13 @@ private val LightColors = lightColorScheme(
 
 )
 
-private val DarkColorPalette = darkColorScheme(
-    primary = GreenAccent,
-    background = DarkGray,
-    onBackground = TextWhite,
-    onPrimary = DarkGray,
-    surface = MediumGray,
-    onSurface = LightGray,
+private val DarkColors = darkColorScheme(
+    primary = md_theme_dark_surface,
+    background = md_theme_dark_surface,
+    onBackground = md_theme_dark_surface,
+    onPrimary = md_theme_dark_surface,
+    surface = md_theme_dark_surface,
+    onSurface = md_theme_dark_surface,
     primaryContainer = md_theme_dark_primaryContainer,
     onPrimaryContainer = md_theme_dark_onPrimaryContainer,
     secondary = md_theme_dark_secondary,
@@ -71,18 +81,32 @@ private val DarkColorPalette = darkColorScheme(
 
 @Composable
 fun ConnectTheme(
-
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+useDarkTheme: Boolean = isSystemInDarkTheme(),
+content: @Composable () -> Unit
 ) {
-    val colors = if (!useDarkTheme) {
-        LightColors
-    } else {
-        DarkColorPalette
+    val context = LocalContext.current
+    val colors = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            if (useDarkTheme) dynamicDarkColorScheme(context)
+            else dynamicLightColorScheme(context)
+        }
+        useDarkTheme -> DarkColors
+        else -> LightColors
+    }
+
+    val view = LocalView.current
+    if (!view.isInEditMode) {
+        SideEffect {
+            val window = (view.context as Activity).window
+            window.statusBarColor = colors.primary.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = useDarkTheme
+        }
     }
 
     MaterialTheme(
         colorScheme = colors,
+        typography = typography,
+        shapes = Shapes,
         content = content
     )
 }

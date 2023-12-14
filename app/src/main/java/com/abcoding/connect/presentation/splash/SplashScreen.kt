@@ -19,7 +19,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abcoding.connect.R
-import com.abcoding.connect.presentation.ui.theme.GreenAccent
 import com.abcoding.connect.presentation.util.Constants
 import com.abcoding.connect.presentation.util.Screen
 import kotlinx.coroutines.delay
@@ -28,6 +27,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(
     navController: NavController
 ) {
+
 
     val scale = remember {
         Animatable(0f)
