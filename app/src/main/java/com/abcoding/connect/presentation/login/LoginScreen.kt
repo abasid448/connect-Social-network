@@ -88,7 +88,7 @@ fun LoginScreen(
                 ),
                 elevation = ButtonDefaults.buttonElevation(2.dp),
                 onClick = {
-
+                    navController.navigate(Screen.MainFeedScreen.route)
                 }, modifier = Modifier.align(Alignment.End),
 
             ) {
