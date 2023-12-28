@@ -142,7 +142,7 @@ fun Post(
         }
         //post and comment count
 
-        Spacer(modifier = Modifier.height(SpaceMedium))
+        Spacer(modifier = Modifier.height(SpaceSmall))
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -219,7 +219,7 @@ fun ActionButtons(
                 tint = if (isLiked) {
                     Color.Red
                 } else {
-                    md_theme_light_shadow
+                    MaterialTheme.colorScheme.inversePrimary
                 },
                 contentDescription = if (isLiked) {
                     stringResource(id = R.string.unlike)
