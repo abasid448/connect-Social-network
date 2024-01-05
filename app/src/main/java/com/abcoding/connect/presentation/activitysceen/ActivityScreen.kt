@@ -12,18 +12,14 @@ import com.abcoding.connect.presentation.components.StandardScaffold
 import com.abcoding.connect.presentation.util.Screen
 
 @Composable
-fun ActivityScreen(navController: NavController){
-    StandardScaffold(
-        navController = navController,
-        modifier = Modifier.fillMaxSize()
+fun ActivityScreen(navController: NavController) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ){
-            Text(text = "Activity_Screen")
-        }
-        
+        Text(text = "Activity_Screen")
     }
+
 }
         
         

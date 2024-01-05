@@ -12,17 +12,12 @@ import com.abcoding.connect.presentation.components.StandardScaffold
 import com.abcoding.connect.presentation.util.Screen
 
 @Composable
-fun ProfileScreen(navController: NavController){
-    StandardScaffold(
-        navController = navController,
-        modifier = Modifier.fillMaxSize()
+fun ProfileScreen(navController: NavController) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ){
-            Text(text = "Profile_Screen")
-        }
-        
+        Text(text = "Profile_Screen")
     }
 }
         

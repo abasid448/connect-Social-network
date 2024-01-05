@@ -37,7 +37,7 @@ fun RowScope.StandardBottomNavItem(
     contentDescription: String? = null,
     selected: Boolean = false,
     alertCount: Int? = null,
-    selectedColor: Color =MaterialTheme.colorScheme.inversePrimary,
+    selectedColor: Color = MaterialTheme.colorScheme.inversePrimary,
     unselectedColor: Color = HintGray,
     enabled: Boolean = true,
     onClick: () -> Unit
@@ -45,12 +45,6 @@ fun RowScope.StandardBottomNavItem(
     if (alertCount != null && alertCount < 0) {
         throw IllegalArgumentException("Alert count can't be negative")
     }
-    val lineLength = animateFloatAsState(
-        targetValue = if(selected) 1f else 0f,
-        animationSpec = tween(
-            durationMillis = 300
-        ), label = ""
-    )
 
     BottomNavigationItem(
         selected = selected,
@@ -64,29 +58,10 @@ fun RowScope.StandardBottomNavItem(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(SpaceSmall)
-                    .drawBehind {
-                        if(lineLength.value > 0f) {
-                            drawLine(
-                                color = if (selected) selectedColor
-                                else unselectedColor,
-                                start = Offset(
-                                    size.width / 2f - lineLength.value * 15.dp.toPx(),
-                                    size.height
-                                ),
-                                end = Offset(
-                                    size.width / 2f + lineLength.value * 15.dp.toPx(),
-                                    size.height
-                                ),
-                                strokeWidth = 2.dp.toPx(),
-                                cap = StrokeCap.Round
-                            )
-                        }
 
-
-                    }
             ) {
                 if(icon != null) {
-                    Icon(
+                    androidx.compose.material.Icon(
                         imageVector = icon,
                         contentDescription = contentDescription,
                         modifier = Modifier
@@ -101,7 +76,7 @@ fun RowScope.StandardBottomNavItem(
                     }
                     Text(
                         text = alertText,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.inversePrimary,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Center,
                         fontSize = 10.sp,
@@ -112,7 +87,6 @@ fun RowScope.StandardBottomNavItem(
                             .clip(CircleShape)
                             .background(MaterialTheme.colorScheme.primary)
                     )
-
                 }
             }
         }

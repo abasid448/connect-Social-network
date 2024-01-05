@@ -46,6 +46,11 @@ fun StandardScaffold(
             icon = Icons.Outlined.ChatBubbleOutline,
             contentDescription = "Message"
         ),
+        BottomNavItem(
+            route = Screen.CreatePostScreen.route,
+            icon = Icons.Outlined.AddBox,
+            contentDescription = "Make Post"
+        ),
 
         BottomNavItem(
             route = Screen.ActivityScreen.route,
@@ -80,14 +85,16 @@ fun StandardScaffold(
                                 icon = bottomNavItem.icon,
                                 contentDescription = bottomNavItem.contentDescription,
                                 selected = bottomNavItem.route == navController.currentDestination?.route,
-                                alertCount = bottomNavItem.alertCount
+                                alertCount = bottomNavItem.alertCount,
+                                enabled = bottomNavItem.icon != null
                             ) {
-                                navController.navigate(bottomNavItem.route)
+                                if (navController.currentDestination?.route != bottomNavItem.route){
+                                    navController.navigate(bottomNavItem.route)
+                                }
                             }
                         }
 
                     }
-
                 }
         }
 

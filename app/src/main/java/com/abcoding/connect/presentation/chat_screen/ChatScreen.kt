@@ -12,17 +12,12 @@ import com.abcoding.connect.presentation.components.StandardScaffold
 import com.abcoding.connect.presentation.util.Screen
 
 @Composable
-fun ChatScreen(navController: NavController){
-    StandardScaffold(
-        navController = navController,
-        modifier = Modifier.fillMaxSize()
+fun ChatScreen(navController: NavController) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
-        Box(modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ){
-            Text(text = "Chat_Screen")
-        }
-        
+        Text(text = "Chat_Screen")
     }
 }
         
