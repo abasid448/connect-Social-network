@@ -37,7 +37,7 @@ fun RowScope.StandardBottomNavItem(
     contentDescription: String? = null,
     selected: Boolean = false,
     alertCount: Int? = null,
-    selectedColor: Color = MaterialTheme.colorScheme.inversePrimary,
+selectedColor: Color = MaterialTheme.colorScheme.inversePrimary,
     unselectedColor: Color = HintGray,
     enabled: Boolean = true,
     onClick: () -> Unit

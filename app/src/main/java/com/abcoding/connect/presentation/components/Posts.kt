@@ -50,6 +50,7 @@ import com.abcoding.connect.R
 import com.abcoding.connect.domain.models.Post
 import com.abcoding.connect.presentation.ui.theme.HintGray
 import com.abcoding.connect.presentation.ui.theme.ProfilePictureSizeExtraSmall
+import com.abcoding.connect.presentation.ui.theme.ProfilePictureSizeExtraSmallplus
 import com.abcoding.connect.presentation.ui.theme.ProfilePictureSizeMedium
 import com.abcoding.connect.presentation.ui.theme.SpaceMedium
 import com.abcoding.connect.presentation.ui.theme.SpaceSmall
@@ -90,12 +91,9 @@ fun Post(
                     painterResource(id = R.drawable.basid),
                     contentDescription = "Profile picture",
                     modifier = Modifier
-                        .size(ProfilePictureSizeExtraSmall)
+                        .size(ProfilePictureSizeExtraSmallplus)
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop
-
-
-
                 )
             }
 
@@ -219,7 +217,7 @@ fun ActionButtons(
                 tint = if (isLiked) {
                     Color.Red
                 } else {
-                    MaterialTheme.colorScheme.inversePrimary
+                    Color.Black
                 },
                 contentDescription = if (isLiked) {
                     stringResource(id = R.string.unlike)

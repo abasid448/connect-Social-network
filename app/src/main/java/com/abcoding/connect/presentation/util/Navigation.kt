@@ -8,11 +8,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.abcoding.connect.domain.models.Post
 import com.abcoding.connect.presentation.activitysceen.ActivityScreen
 import com.abcoding.connect.presentation.chat_screen.ChatScreen
 import com.abcoding.connect.presentation.create_post.CreatePostScreen
 import com.abcoding.connect.presentation.main_screen.MainFeedScreen
 import com.abcoding.connect.presentation.login.LoginScreen
+import com.abcoding.connect.presentation.post_details.PostDetailScreen
 import com.abcoding.connect.presentation.profile_screen.ProfileScreen
 import com.abcoding.connect.presentation.register.RegisterScreen
 import com.abcoding.connect.presentation.splash.SplashScreen
@@ -47,6 +49,22 @@ fun Navigation(navController: NavHostController){
         }
         composable(Screen.CreatePostScreen.route){
            CreatePostScreen(navController = navController)
+        }
+        composable(Screen.PostDetailScreen.route){
+            PostDetailScreen(navController = navController,
+                post = Post(
+                    username = "Abdul Basid",
+                    imageUrl = "",
+                    profilePictureUrl = "",
+                    description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed" +
+                            " diam nonumy eirmod tempor invidunt ut labore et dolore \n  " +
+                            "agna aliquyam erat, sed diam voluptuaLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed \n " +
+                            "diam nonumy eirmod tempor invidunt ut labore et dolore" +
+                            "magna aliquyam erat, sed diam voluptua",
+                    likeCount = 70,
+                    commentCount = 17
+                )
+            )
         }
     }
 }
