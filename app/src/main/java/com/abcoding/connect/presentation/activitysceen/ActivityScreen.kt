@@ -1,23 +1,73 @@
 package com.abcoding.connect.presentation.activitysceen
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
-import com.abcoding.connect.presentation.components.StandardScaffold
-import com.abcoding.connect.presentation.util.Screen
+import com.abcoding.connect.R
+import com.abcoding.connect.domain.models.Activity
+import com.abcoding.connect.domain.models.util.ActivityAction
+import com.abcoding.connect.domain.models.util.DateFormatUtil
+import com.abcoding.connect.presentation.activitysceen.component.ActivityItem
+import com.abcoding.connect.presentation.components.StandardToolbar
+import com.abcoding.connect.presentation.ui.theme.SpaceMedium
+import kotlin.random.Random
 
 @Composable
 fun ActivityScreen(navController: NavController) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+    Column(
+        modifier = Modifier.fillMaxWidth()
     ) {
-        Text(text = "Activity_Screen")
+        StandardToolbar(
+            navController = navController,
+            title = {
+                androidx.compose.material.Text(
+                    text = stringResource(id = R.string.your_feed),
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            },
+            modifier = Modifier.fillMaxWidth(),
+            showBackArrow = false,
+        )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
+            contentPadding = PaddingValues(SpaceMedium)
+
+        ) {
+
+            items(20) {
+                ActivityItem(
+                    activity = Activity(
+                        username = "Martha",
+                        actionType = if (Random.nextInt(2) == 0) {
+                            ActivityAction.LikedPost
+                        } else ActivityAction.CommentedOnPost,
+                        formattedTime = DateFormatUtil.timestampToFormattedString(
+                            timestamp = System.currentTimeMillis(),
+                            pattern = "MMM dd, HH:mm"
+                        )
+                    ),
+                )
+                if (it < 19) {
+                    Spacer(modifier = Modifier.height(SpaceMedium))
+                }
+            }
+
+        }
+
     }
 
 }

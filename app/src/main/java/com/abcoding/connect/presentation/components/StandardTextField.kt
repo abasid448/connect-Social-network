@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.abcoding.connect.presentation.components
 
 import androidx.annotation.ColorRes
@@ -37,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import com.abcoding.connect.R
 import com.abcoding.connect.presentation.util.TestTags
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StandardTextField(
     modifier: Modifier = Modifier,
@@ -46,6 +45,7 @@ fun StandardTextField(
     onValueChange: (String) -> Unit,
     error: String = " ",
     keyboardType: KeyboardType = KeyboardType.Text,
+
     showPasswordToggle: Boolean = false,
     onPasswordToggleClick: (Boolean) -> Unit = {}
 ) {
