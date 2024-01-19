@@ -56,6 +56,7 @@ import com.abcoding.connect.presentation.ui.theme.SpaceMedium
 import com.abcoding.connect.presentation.ui.theme.SpaceSmall
 import com.abcoding.connect.presentation.ui.theme.md_theme_light_inversePrimary
 import com.abcoding.connect.presentation.ui.theme.md_theme_light_onSecondary
+import com.abcoding.connect.presentation.ui.theme.md_theme_light_scrim
 import com.abcoding.connect.presentation.ui.theme.md_theme_light_secondary
 import com.abcoding.connect.presentation.ui.theme.md_theme_light_shadow
 import com.abcoding.connect.presentation.util.Constants
@@ -217,7 +218,7 @@ fun ActionButtons(
                 tint = if (isLiked) {
                     Color.Red
                 } else {
-                    Color.Black
+                    MaterialTheme.colorScheme.tertiaryContainer
                 },
                 contentDescription = if (isLiked) {
                     stringResource(id = R.string.unlike)
@@ -235,7 +236,9 @@ fun ActionButtons(
         ) {
             Icon(
                 imageVector = Icons.Outlined.Comment,
-                contentDescription = stringResource(id = R.string.comment)
+                contentDescription = stringResource(id = R.string.comment),
+                tint = MaterialTheme.colorScheme.tertiaryContainer
+
             )
         }
         Spacer(modifier = Modifier.width(SpaceMedium))
@@ -248,11 +251,24 @@ fun ActionButtons(
         ) {
             Icon(
                 imageVector = Icons.Filled.Send,
-                contentDescription = stringResource(id = R.string.share)
+                contentDescription = stringResource(id = R.string.share),
+                tint = MaterialTheme.colorScheme.tertiaryContainer
             )
         }
     }
 
+}
+@Preview
+@Composable
+fun Preview(){
+    Post(post = Post(
+        username = "Alakanandah a",
+        "",
+        "",
+        "ahbcuacah cuhvjabchab a ckjnjnain ababa0",
+        24,
+        12
+    ))
 }
 
 

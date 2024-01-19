@@ -23,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -45,7 +46,9 @@ fun StandardTextField(
     onValueChange: (String) -> Unit,
     error: String = " ",
     keyboardType: KeyboardType = KeyboardType.Text,
-
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
+    leadingIcon: ImageVector? = null,
     showPasswordToggle: Boolean = false,
     onPasswordToggleClick: (Boolean) -> Unit = {}
 ) {
@@ -63,6 +66,7 @@ fun StandardTextField(
                     onValueChange(it)
                 }
             },
+            maxLines = maxLines,
             label = {
                 Text(
                     text = hint, style = MaterialTheme.typography.labelSmall
@@ -79,6 +83,7 @@ fun StandardTextField(
             } else {
                 VisualTransformation.None
             },
+
             trailingIcon = {
 
 //                //color of trailing icon
