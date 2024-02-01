@@ -79,7 +79,12 @@ fun ActivityScreen(navController: NavController) {
 
 }
 
-
+@Preview
+@Composable
+fun Preview() {
+    val navController = rememberNavController()
+    ActivityScreen(navController = navController)
+}
         
         
         

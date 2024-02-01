@@ -26,7 +26,7 @@ private val LightColors = lightColorScheme(
     onSecondary = md_theme_light_onSecondary,
     secondaryContainer = md_theme_light_secondaryContainer,
     onSecondaryContainer = md_theme_light_onSecondaryContainer,
-    tertiary = md_theme_light_tertiary,
+    tertiary = md_theme_light_onSecondary,
     onTertiary = md_theme_light_onTertiary,
     tertiaryContainer = md_theme_light_shadow,
     onTertiaryContainer = md_theme_light_onTertiaryContainer,
@@ -44,7 +44,7 @@ private val LightColors = lightColorScheme(
     inverseOnSurface = md_theme_light_inverseOnSurface,
     inverseSurface = md_theme_light_inverseSurface,
     inversePrimary = md_theme_light_inversePrimary,
-    surfaceTint = md_theme_light_surfaceTint,
+    surfaceTint = md_theme_light_shadow,
 
 )
 
@@ -61,7 +61,7 @@ private val DarkColors = darkColorScheme(
     onSecondary = md_theme_dark_onSecondary,
     secondaryContainer = md_theme_dark_secondaryContainer,
     onSecondaryContainer = md_theme_dark_onSecondaryContainer,
-    tertiary = md_theme_dark_tertiary,
+    tertiary = md_theme_dark_shadow,
     onTertiary = md_theme_dark_onTertiary,
     tertiaryContainer = md_theme_light_scrim,
     onTertiaryContainer = md_theme_dark_onTertiaryContainer,
@@ -75,7 +75,7 @@ private val DarkColors = darkColorScheme(
     inverseOnSurface = md_theme_dark_inverseOnSurface,
     inverseSurface = md_theme_dark_inverseSurface,
     inversePrimary = md_theme_dark_inversePrimary,
-    surfaceTint = md_theme_dark_surfaceTint,
+    surfaceTint = md_theme_dark_inverseSurface,
 
 )
 

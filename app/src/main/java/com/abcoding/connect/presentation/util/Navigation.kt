@@ -1,6 +1,7 @@
 package com.abcoding.connect.presentation.util
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -12,18 +13,21 @@ import com.abcoding.connect.domain.models.Post
 import com.abcoding.connect.presentation.activitysceen.ActivityScreen
 import com.abcoding.connect.presentation.chat_screen.ChatScreen
 import com.abcoding.connect.presentation.create_post.CreatePostScreen
+import com.abcoding.connect.presentation.edit_profile.EditProfileScreen
 import com.abcoding.connect.presentation.main_screen.MainFeedScreen
 import com.abcoding.connect.presentation.login.LoginScreen
 import com.abcoding.connect.presentation.post_details.PostDetailScreen
 import com.abcoding.connect.presentation.profile_screen.ProfileScreen
 import com.abcoding.connect.presentation.register.RegisterScreen
+import com.abcoding.connect.presentation.search.SearchScreen
 import com.abcoding.connect.presentation.splash.SplashScreen
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = Screen.LoginScreen.route,
+        startDestination = Screen.SearchScreen.route,
         modifier = Modifier.fillMaxSize()
     ){
          composable(Screen.SplashScreen.route){
@@ -47,8 +51,14 @@ fun Navigation(navController: NavHostController){
         composable(Screen.ProfileScreen.route){
             ProfileScreen(navController = navController)
         }
+        composable(Screen.EditProfileScreen.route){
+            EditProfileScreen(navController = navController)
+        }
         composable(Screen.CreatePostScreen.route){
            CreatePostScreen(navController = navController)
+        }
+        composable(Screen.SearchScreen.route){
+            SearchScreen(navController = navController)
         }
         composable(Screen.PostDetailScreen.route){
             PostDetailScreen(navController = navController,

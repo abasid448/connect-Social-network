@@ -1,6 +1,7 @@
 package com.abcoding.connect.presentation.components
 
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -11,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.abcoding.connect.R
@@ -30,9 +32,12 @@ fun  StandardToolbar(
             {
                 IconButton(onClick = {
                     navController.navigateUp()
-                }) {
+                },
+                    modifier = Modifier
+
+                ) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBackIosNew,
+                        imageVector = Icons.Default.ArrowBack,
                         contentDescription = stringResource(id = R.string.back),
                         tint = MaterialTheme.colorScheme.onBackground
                     )
@@ -40,7 +45,7 @@ fun  StandardToolbar(
             }
         } else null,
         actions = navActions,
-        backgroundColor = MaterialTheme.colorScheme.surface,
+        backgroundColor = MaterialTheme.colorScheme.background,
         elevation = 0.dp,
         
     )

@@ -3,10 +3,12 @@ package com.abcoding.connect.presentation.components
 import androidx.annotation.ColorRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -32,8 +34,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abcoding.connect.R
+import com.abcoding.connect.presentation.ui.theme.IconSizeMedium
+import com.abcoding.connect.presentation.ui.theme.md_theme_light_onSurface
 import com.abcoding.connect.presentation.util.TestTags
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,6 +82,17 @@ fun StandardTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType
             ),
+            leadingIcon = if (leadingIcon != null) {
+                val icon: @Composable () -> Unit = {
+                    Icon(
+                        imageVector = leadingIcon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.surfaceTint,
+                        modifier = Modifier.size(IconSizeMedium)
+                    )
+                }
+                icon
+            } else null,
             singleLine = true,
             visualTransformation = if (!showPasswordToggle && isPasswordToggleDisplayed) {
                 PasswordVisualTransformation()
@@ -136,6 +152,27 @@ fun StandardTextField(
                 color = MaterialTheme.colorScheme.error,
                 textAlign = TextAlign.End,
                 modifier = Modifier.fillMaxWidth()
+            )
+        }
+    }
+}
+
+@Composable
+@Preview
+fun StandardTextField() {
+    Surface {
+        Column {
+            StandardTextField(
+                text = "Preview Text",
+                hint = "Enter text",
+                onValueChange = {},
+                error = "Example error message",
+                keyboardType = KeyboardType.Text,
+                singleLine = true,
+                maxLines = 1,
+                leadingIcon = Icons.Default.Search,
+                showPasswordToggle = true,
+                onPasswordToggleClick = {}
             )
         }
     }
