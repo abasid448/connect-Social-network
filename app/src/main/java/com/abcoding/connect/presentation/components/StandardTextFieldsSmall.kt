@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,9 +35,13 @@ fun StandardTextFieldSmall(
     hint: String = "",
     maxLength: Int = 25,
     onValueChange: (String) -> Unit,
+    error: String = " ",
     keyboardType: KeyboardType = KeyboardType.Text,
     singleLine: Boolean = true,
     maxLines: Int = 1,
+    leadingIcon: ImageVector? = null,
+    showPasswordToggle: Boolean = false,
+    onPasswordToggleClick: (Boolean) -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -51,22 +56,23 @@ fun StandardTextFieldSmall(
                 }
             },
             maxLines = maxLines,
-            label = {
+            placeholder = {
                 Text(
-                    text = hint, style = MaterialTheme.typography.labelSmall, color = Color.Gray
+                    text = hint, style = MaterialTheme.typography.labelSmall
                 )
-
             },
+            isError = error != "",
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType
             ),
             singleLine = true,
-
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
                 focusedLabelColor = MaterialTheme.colorScheme.inversePrimary,
                 cursorColor = MaterialTheme.colorScheme.inversePrimary,
+                containerColor = MaterialTheme.colorScheme.surfaceTint,
+
             ),
             modifier = Modifier
                 .fillMaxWidth()

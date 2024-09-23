@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     StandardScaffold(
                         navController = navController,
                         showBottomBar = navBackStackEntry?.destination?.route in listOf(
-                            Screen.MainFeedScreen.route,
+                            Screen. MainFeedScreen.route,
                             Screen.ChatScreen.route,
                             Screen.ActivityScreen.route,
                             Screen.ProfileScreen.route,

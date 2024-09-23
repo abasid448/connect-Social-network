@@ -1,7 +1,5 @@
 package com.abcoding.connect.presentation.register
 
-import android.graphics.Paint.Align
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,14 +12,11 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
@@ -31,15 +26,14 @@ import androidx.navigation.NavController
 import com.abcoding.connect.R
 import com.abcoding.connect.presentation.components.StandardTextField
 import com.abcoding.connect.presentation.ui.theme.SpaceLarge
-import com.abcoding.connect.presentation.ui.theme.SpaceMedium
-import com.abcoding.connect.presentation.ui.theme.SpaceSmall
-import com.abcoding.connect.presentation.util.Screen
+import com.abcoding.connect.presentation.util.Constants
 
 @Composable
 fun RegisterScreen(
     navController: NavController,
     viewModel: RegisterViewModel = hiltViewModel()
 ) {
+    val state = viewModel.state.value
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -59,41 +53,76 @@ fun RegisterScreen(
                 style = MaterialTheme.typography.headlineMedium
             )
             Spacer(modifier = Modifier.height(SpaceLarge))
-
             StandardTextField(
-                text = viewModel.usernameText.value,
+                text = state.emailText,
                 onValueChange = {
-                    viewModel.setUsernameText(it)
-                },
-                hint = stringResource(id = R.string.username),
-                error = viewModel.usernameError.value
-            )
-
-            Spacer(modifier = Modifier.height(SpaceLarge))
-
-
-            StandardTextField(
-                text = viewModel.emailText.value,
-                onValueChange = {
-                    viewModel.setEmailText(it)
+                    viewModel.onEvent(RegisterEvent.EnteredEmail(it))
                 },
                 hint = stringResource(id = R.string.email),
-                error = viewModel.emailError.value
+                error = when (state.emailError) {
+                    RegisterState.EmailError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+
+                    RegisterState.EmailError.InvalidEmail -> {
+                        stringResource(id = R.string.not_a_valid_email)
+                    }
+
+                    null -> ""
+                }
+
+            )
+
+            Spacer(modifier = Modifier.height(SpaceLarge))
+            StandardTextField(
+                text = state.usernameText,
+                onValueChange = {
+                    viewModel.onEvent(RegisterEvent.EnteredUsername(it))
+                },
+                hint = stringResource(id = R.string.username),
+                error = when (state.usernameError) {
+                    RegisterState.UsernmeError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+
+                    RegisterState.UsernmeError.InputTooShort -> {
+                        stringResource(id = R.string.input_too_short, Constants.MIN_USERNAME_LENGTH)
+                    }
+
+                    null -> ""
+                }
             )
 
             Spacer(modifier = Modifier.height(SpaceLarge))
 
-            StandardTextField(text = viewModel.passwordText.value,
+            StandardTextField(
+                text = state.passwordText,
                 onValueChange = {
-                    viewModel.setPasswordText(it)
+                    viewModel.onEvent(RegisterEvent.EnteredPassword(it))
                 },
                 hint = stringResource(id = R.string.password_hint),
                 keyboardType = KeyboardType.Password,
-                error = viewModel.passwordError.value,
-                showPasswordToggle = viewModel.showPassword.value,
+                error = when (state.passwordError) {
+                    RegisterState.PasswordError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+
+                    RegisterState.PasswordError.InvalidPassword -> {
+                        stringResource(id = R.string.invalid_password)
+                    }
+
+                    RegisterState.PasswordError.InputTooShort -> {
+                        stringResource(id = R.string.input_too_short, Constants.MIN_PASSWORD_LENGTH)
+                    }
+
+                    null -> ""
+                },
+                showPasswordToggle = state.isPasswordVisible,
                 onPasswordToggleClick = {
-                    viewModel.setShowPassword(it)
-                })
+                    viewModel.onEvent(RegisterEvent.TogglePasswordVisibility)
+                },
+
+                )
             Spacer(modifier = Modifier.height(SpaceLarge))
             Button(
                 colors = ButtonDefaults.buttonColors(
@@ -101,10 +130,12 @@ fun RegisterScreen(
                 ),
                 elevation = ButtonDefaults.buttonElevation(2.dp),
                 onClick = {
+                    viewModel.onEvent(RegisterEvent.Register)
 
-                }, modifier = Modifier.align(Alignment.End),
+                },
+                modifier = Modifier.align(Alignment.End),
 
-            ) {
+                ) {
                 Text(
                     text = stringResource(id = R.string.register),
                     color = MaterialTheme.colorScheme.onTertiary

@@ -216,7 +216,7 @@ fun BannerEditSection(
     onBannerClick: () -> Unit = {},
     onProfileImageClick: () -> Unit = {}
 ) {
-    val bannerHeight = (LocalConfiguration.current.screenWidthDp / 2.5f).dp
+    val bannerHeight = (LocalConfiguration.current.screenWidthDp / 3f).dp
 
     Box(
         modifier = Modifier

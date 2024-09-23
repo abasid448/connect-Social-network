@@ -50,13 +50,17 @@ fun SearchScreen(
                 showBackArrow = true,
                 title = {
                     StandardTextFieldSmall(
+                        modifier = Modifier
+                            .fillMaxWidth(),
                         text = viewModel.searchState.value.text,
                         hint = stringResource(id = R.string.search),
+                        error = viewModel.searchState.value.error,
+                        leadingIcon = Icons.Default.Search,
                         onValueChange = {
                             viewModel.setSearchState(
                                 StandardTextFieldState(text = it)
                             )
-                        },
+                        }
 
                     )
                 },
@@ -77,7 +81,7 @@ fun SearchScreen(
                     UserProfileItem(
                         user = User(
                             profilePictureUrl = "",
-                            username = "Philipp Lackner",
+                            username = "Abdul Basid",
                             description = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed\n" +
                                     "diam nonumy eirmod tempor invidunt ut labore et dolore \n" +
                                     "magna aliquyam erat, sed diam voluptua",

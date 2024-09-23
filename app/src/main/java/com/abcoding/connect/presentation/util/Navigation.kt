@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.abcoding.connect.domain.models.Post
+import com.abcoding.connect.presentation.PersonListScreen
 import com.abcoding.connect.presentation.activitysceen.ActivityScreen
 import com.abcoding.connect.presentation.chat_screen.ChatScreen
 import com.abcoding.connect.presentation.create_post.CreatePostScreen
@@ -27,7 +28,7 @@ import com.abcoding.connect.presentation.splash.SplashScreen
 fun Navigation(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = Screen.SearchScreen.route,
+        startDestination = Screen.LoginScreen.route,
         modifier = Modifier.fillMaxSize()
     ){
          composable(Screen.SplashScreen.route){
@@ -60,6 +61,7 @@ fun Navigation(navController: NavHostController){
         composable(Screen.SearchScreen.route){
             SearchScreen(navController = navController)
         }
+
         composable(Screen.PostDetailScreen.route){
             PostDetailScreen(navController = navController,
                 post = Post(
@@ -75,6 +77,9 @@ fun Navigation(navController: NavHostController){
                     commentCount = 17
                 )
             )
+        }
+        composable(Screen.PersonalListScreen.route){
+            PersonListScreen(navController = navController)
         }
     }
 }

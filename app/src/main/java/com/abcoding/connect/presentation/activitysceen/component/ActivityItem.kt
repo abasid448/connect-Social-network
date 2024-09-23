@@ -49,7 +49,8 @@ fun ActivityItem(
                 is ActivityAction.CommentedOnPost ->
                     stringResource(id = R.string.commented_on)
 
-                ActivityAction.FollowedYou -> TODO()
+                is ActivityAction.FollowedYou -> 
+                    stringResource(id = R.string.followed_you)
             }
             val actionText = when (activity.actionType) {
                 is ActivityAction.LikedPost ->
@@ -58,7 +59,7 @@ fun ActivityItem(
                 is ActivityAction.CommentedOnPost ->
                     stringResource(id = R.string.your_post)
 
-                ActivityAction.FollowedYou -> TODO()
+                is ActivityAction.FollowedYou -> ""
             }
             Text(
                 text = buildAnnotatedString {

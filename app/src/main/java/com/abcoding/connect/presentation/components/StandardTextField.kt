@@ -135,8 +135,8 @@ fun StandardTextField(
 
             },
             colors = TextFieldDefaults.textFieldColors(
-                unfocusedIndicatorColor = MaterialTheme.colorScheme.onSecondary,
-                focusedIndicatorColor = MaterialTheme.colorScheme.inversePrimary,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
                 focusedLabelColor = MaterialTheme.colorScheme.inversePrimary,
                 cursorColor = MaterialTheme.colorScheme.inversePrimary,
             ),

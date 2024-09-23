@@ -44,7 +44,7 @@ fun ActivityScreen(navController: NavController) {
                 )
             },
             modifier = Modifier.fillMaxWidth(),
-            showBackArrow = false,
+            showBackArrow = true,
         )
         LazyColumn(
             modifier = Modifier
