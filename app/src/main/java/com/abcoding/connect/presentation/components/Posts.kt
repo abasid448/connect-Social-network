@@ -45,6 +45,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material.icons.automirrored.outlined.Comment
+import androidx.compose.material.icons.automirrored.filled.Send
 import coil.compose.rememberImagePainter
 import com.abcoding.connect.R
 import com.abcoding.connect.domain.models.Post
@@ -235,7 +237,7 @@ fun ActionButtons(
             modifier = modifier.size(Constants.iconSize)
         ) {
             Icon(
-                imageVector = Icons.Outlined.Comment,
+                imageVector = Icons.AutoMirrored.Outlined.Comment,
                 contentDescription = stringResource(id = R.string.comment),
                 tint = MaterialTheme.colorScheme.tertiaryContainer
 
@@ -250,7 +252,7 @@ fun ActionButtons(
             modifier = modifier.size(Constants.iconSize)
         ) {
             Icon(
-                imageVector = Icons.Filled.Send,
+                imageVector = Icons.AutoMirrored.Filled.Send,
                 contentDescription = stringResource(id = R.string.share),
                 tint = MaterialTheme.colorScheme.tertiaryContainer
             )
